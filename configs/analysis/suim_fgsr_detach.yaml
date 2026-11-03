@@ -1,0 +1,27 @@
+# FGSR detach experiment — feature-detach variant
+# Identical to suim_fgsr_control.yaml except that c1-c4 are detached before
+# entering the FGSR projection. FGSR parameters still train, and W still
+# participates in backpropagation, but the FGSR branch no longer sends
+# gradients into the backbone.
+dataset: suim
+nclass: 6
+crop_size: [480, 640]
+data_root: data/SUIM
+
+epochs: 60
+batch_size: 2  # per GPU
+lr: 0.001
+lr_multi: 10.0
+criterion:
+  name: CELoss
+  kwargs:
+    ignore_index: 255
+conf_thresh: 0.0
+
+use_fgsr: True
+r_min: 0.5
+detach_fgsr_features: True
+
+backbone: resnet50
+replace_stride_with_dilation: [False, True, True]
+dilations: [6, 12, 18]

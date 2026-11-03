@@ -1,0 +1,23 @@
+# DUT Ours: Hybrid Decoder + FGSR, conf_thresh=0.0
+dataset: dut
+nclass: 5
+crop_size: [480, 640]
+data_root: data/DUT
+
+epochs: 80
+batch_size: 2
+lr: 0.001
+lr_multi: 10.0
+criterion:
+  name: CELoss
+  kwargs:
+    ignore_index: 255
+conf_thresh: 0.0
+
+use_hybrid_decoder: True
+use_fgsr: True
+r_min: 0.5
+
+backbone: resnet50
+replace_stride_with_dilation: [False, True, True]
+dilations: [6, 12, 18]

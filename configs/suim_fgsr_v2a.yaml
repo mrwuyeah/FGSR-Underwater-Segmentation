@@ -1,0 +1,26 @@
+# arguments for dataset
+dataset: suim
+nclass: 6
+crop_size: [480, 640]
+data_root: data/SUIM
+
+# arguments for training
+epochs: 80
+batch_size: 2  # per GPU
+lr: 0.001
+lr_multi: 10.0
+criterion:
+  name: CELoss
+  kwargs:
+    ignore_index: 255
+conf_thresh: 0.0
+
+# FGSR V2a: warmup + milder R range
+use_fgsr: True
+r_min: 0.7            # R ∈ [0.7, 1.0] (V1 used 0.5)
+warmup_epoch: 5       # linear blend from 1.0 → R over first 5 epochs
+
+# arguments for model
+backbone: resnet50
+replace_stride_with_dilation: [False, True, True]
+dilations: [6, 12, 18]

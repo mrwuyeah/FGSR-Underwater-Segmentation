@@ -1,0 +1,21 @@
+# PyTorch is not pinned here; install the build that matches your CUDA driver.
+# The paper used torch==1.12.1 / torchvision==0.13.1. This release uses
+# torch.load(..., weights_only=False) in the evaluation utilities, so install
+# PyTorch 2.x (2.0 or newer).
+torch>=2.0
+torchvision>=0.15
+
+numpy>=1.21
+Pillow>=9.0
+PyYAML>=5.4
+opencv-python>=4.5
+scipy>=1.7
+scikit-image>=0.19
+tqdm>=4.62
+
+# Logging
+tensorboard>=2.9
+tensorboardX>=2.5
+
+# Used conditionally by the U2PL contrastive loss
+einops>=0.6
